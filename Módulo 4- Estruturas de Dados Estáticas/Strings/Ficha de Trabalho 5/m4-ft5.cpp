@@ -33,11 +33,13 @@ using namespace std;
 
 // Declaração de variáveis globais
 
-string texto = "era uma vez   um gato maltês  tocava piano e falava francês  ";
+string texto;
 
 int MenuEscolhido;
 
 // Declaração de funções
+
+void Insira_String();
 
 void Menu_Principal();
 
@@ -65,9 +67,19 @@ int main()
 
     system("color 0e");
 
+    Insira_String();
+
     EscolhaMenu();
 
     return 0;
+}
+
+void Insira_String()
+{
+
+    puts("\t");
+    cout << "\tInsira a frase desejada:";
+    getline(cin, texto);
 }
 
 void Menu_Principal()
@@ -345,42 +357,31 @@ int conta_palavras(string s)
     system("cls");
     cout << "\n";
 
-    // Remove espaços extras no final da string
+    int posicaoEspaco, NumPalavras = 0;
 
-    while (!s.empty() && s.back() == ' ')
-    {
-        s.pop_back();
-    }
+    posicaoEspaco = -1;
 
-    int posicaoEspaco = -1;
+    // Se o primeiro caractere nao for espaco, é uma palavra!
 
-    // Elimina duplicatas de espaços deixando apenas um espaço
+    if (s[0] != ' ')
+
+        NumPalavras++;
+
+    // Procura pelos espaços, e oque vem a seguir ao espaço é palavra
 
     do
     {
-        posicaoEspaco = s.find("  ", posicaoEspaco + 1);
+        posicaoEspaco = s.find(" ", posicaoEspaco + 1);
 
-        if (posicaoEspaco != -1)
-        {
-            s = s.replace(posicaoEspaco, 2, " "); // Substitui duplo espaço por 1 espaço
-        }
+        // so contabiliza a ult. palavra se nao for um espaço
+
+        if (posicaoEspaco != -1 && (posicaoEspaco + 1 < s.length() && s[posicaoEspaco + 1] != ' '))
+
+            NumPalavras++;
+
     } while (posicaoEspaco != -1);
 
-    // Conta o número de palavras na string
-
-    posicaoEspaco = 0;
-
-    int NumPalavras = 0; // começa em 0 pq sim, em 1 tava dando 12 e tem que dar 11
-
-    while (posicaoEspaco != -1)
-    {
-        posicaoEspaco = s.find(' ', posicaoEspaco + 1);
-
-        if (posicaoEspaco != -1)
-        {
-            NumPalavras++;
-        }
-    }
+    cout << "\t" << s << endl;
 
     return NumPalavras;
 }

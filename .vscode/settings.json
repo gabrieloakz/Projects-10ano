@@ -1,0 +1,11 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "xutility": "cpp",
+        "xstring": "cpp",
+        "algorithm": "cpp",
+        "locale": "cpp"
+    }
+}

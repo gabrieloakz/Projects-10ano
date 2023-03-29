@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <locale>
+#include <string> //biblioteca pra trabalhar com strings
 using namespace std;
 
 int;

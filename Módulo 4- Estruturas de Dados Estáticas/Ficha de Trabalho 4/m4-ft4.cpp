@@ -318,11 +318,3 @@ void Ordem_Decrescente()
     system("pause");
 }
 
-void Sair()
-{
-
-    system("cls");
-
-    cout << "\n\n\tPressione qualquer tecla para sair do progama!"
-         << "\n\n\t";
-}

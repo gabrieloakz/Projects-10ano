@@ -6,6 +6,7 @@
         "xutility": "cpp",
         "xstring": "cpp",
         "algorithm": "cpp",
-        "locale": "cpp"
+        "locale": "cpp",
+        "vector": "cpp"
     }
 }

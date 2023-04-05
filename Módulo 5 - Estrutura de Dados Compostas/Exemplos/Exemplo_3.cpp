@@ -50,7 +50,7 @@ int dias_entre_datas(dma data1, dma data2)
     return dias;
 }
 
-sint main()
+int main()
 {
     setlocale(LC_ALL, "pt_PT.utf8");
     

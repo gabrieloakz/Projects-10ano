@@ -32,7 +32,7 @@ struct BANDA
     int Rank_Favoritas;
 };
 
-void Inserir_Dados(BANDA Dados[],int Num_Bandas)
+int Inserir_Dados(BANDA Dados[], int Num_Bandas)
 {
 
     system("cls");
@@ -43,6 +43,7 @@ void Inserir_Dados(BANDA Dados[],int Num_Bandas)
 
     puts("\t");
 
+    cin.ignore();
     cout << "\n\tInsira o nome: ";
     getline(cin, Dados[Num_Bandas].Nome);
     cout << "\n\tInsira o gênero: ";
@@ -51,21 +52,129 @@ void Inserir_Dados(BANDA Dados[],int Num_Bandas)
     cin >> Dados[Num_Bandas].Numero_Musicos;
     cout << "\n\tInsira a posição no seu rank de favoritas: ";
     cin >> Dados[Num_Bandas].Rank_Favoritas;
-    cin.ignore();
+
+    Num_Bandas++;
+
+    return Num_Bandas;
+}
+
+void Mostrar_Registros(BANDA Dados[], int Num_Bandas)
+{
+
+    if (Num_Bandas > 0)
+    {
+        for (int i = 0; i < Num_Bandas; i++)
+        {
+            cout << "\n\tPosição: " << i + 1;
+
+            cout << "\n\tNome: " << Dados[i].Nome;
+
+            cout << "\n\tGênero: " << Dados[i].Genero;
+
+            cout << "\n\tNúmero de músicos: " << Dados[i].Numero_Musicos;
+
+            cout << "\n\tRank Favoritas: " << Dados[i].Rank_Favoritas << "\n\n";
+        }
+    }
+
+    else
+    {
+        cout << "\n\t\tAinda não foram adicionadas bandas!";
+    }
+}
+
+void Editar_Dados(BANDA Dados[], int Num_Bandas)
+{
+
+    int Registro;
+
+    system("cls");
+
+    puts("\t");
+
+    cout << "\t----- Editar Dados ------";
+
+    puts("\t");
+
+    Mostrar_Registros(Dados, Num_Bandas);
+
+    cout << "\n\tQual registro deseja alterar: ";
+    cin >> Registro;
+
+    system("cls");
+
+    if (Registro >= 0 && Registro < Num_Bandas)
+    {
+
+        puts("\t");
+
+        cin.ignore();
+        cout << "\n\tInsira o nome: ";
+        getline(cin, Dados[Registro].Nome);
+        cout << "\n\tInsira o gênero: ";
+        getline(cin, Dados[Registro].Genero);
+        cout << "\n\tInsira o número de músicos: ";
+        cin >> Dados[Registro].Numero_Musicos;
+        cout << "\n\tInsira a posição no seu rank de favoritas: ";
+        cin >> Dados[Registro].Rank_Favoritas;
+    }
 
     system("pause");
 }
 
-// void Editar_Dados(BANDA Dados[])
-// {
-// }
+void Pesquisar_Dados(BANDA Dados[], int Num_Bandas)
+{
 
-// void Pesquisar_Dados()
-// {
-// }
+    string nome;
+
+    system("cls");
+
+    puts("\t");
+
+    cout << "\t----- Pesquisar Dados ------";
+
+    puts("\t");
+    
+    cin.ignore();
+    cout << "\n\tDigite a banda que deseja encontrar: ";
+    getline(cin, nome);
+
+    int posicao = -1;
+
+    for (int i = 0; i < Num_Bandas; i++)
+    {
+        if (nome.compare(Dados[i].Nome) == 0)
+
+        cout << "\n\tRegisto encontrado! ";
+        posicao = i;
+    }
+
+    if (posicao == -1)
+    {
+
+        cout << "\n\tRegisto não encontrado! ";
+    }
+
+    else
+    {
+        cout << "\n\tPosição: " << posicao + 1;
+
+        cout << "\n\tNome: " << Dados[posicao].Nome;
+
+        cout << "\n\tGênero: " << Dados[posicao].Genero;
+
+        cout << "\n\tNúmero de músicos: " << Dados[posicao].Numero_Musicos;
+
+        cout << "\n\tRank Favoritas: " << Dados[posicao].Rank_Favoritas << "\n\n";
+    }
+
+    system("pause");
+}
 
 int Menu_Principal()
 {
+
+    int MenuEscolhido;
 
     system("cls");
 
@@ -85,25 +194,16 @@ int Menu_Principal()
     return MenuEscolhido;
 }
 
-void Sair()
-{
-
-    system("cls");
-
-    cout << "\n\n\tPressione qualquer tecla para sair do progama!"
-         << "\n\n\t";
-}
-
-int main()
+int main() 
 {
 
     setlocale(LC_ALL, "pt_PT.utf8");
 
     system("color 0E");
 
-    BANDA Registro[NUM_BANDAS];
-
     int MenuEscolhido, Num_Bandas = 0;
+
+    BANDA Registro[MAX_BANDAS];
 
     do
     {
@@ -123,18 +223,19 @@ int main()
                 }
                 else
                 {
+                    "\n\tErro! Não é possível adiconar mais bandas!";
                 }
 
                 break;
 
             case 2:
 
-                Editar_Dados(Registro);
+                Editar_Dados(Registro, Num_Bandas);
                 break;
 
             case 3:
 
-                Pesquisar_Dados(Registro);
+                Pesquisar_Dados(Registro, Num_Bandas);
                 break;
 
             default:
@@ -148,8 +249,6 @@ int main()
         }
 
     } while (MenuEscolhido != 0);
-
-    Sair();
 
     return 0;
 }

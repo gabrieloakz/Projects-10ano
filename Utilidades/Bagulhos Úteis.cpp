@@ -32,5 +32,8 @@ int main(Tralhas)
 
    // começa em 0 pq sim, em 1 tava dando 12 e tem que dar 11
 
+ 
+
+
         return 0;
 }

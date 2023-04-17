@@ -1,0 +1,116 @@
+// Feito por Gabriel Ferreira Carvalho 10E TGPSI AEB
+
+#include <iostream>
+#include <locale>
+#include <string> //biblioteca pra trabalhar com strings
+using namespace std;
+
+/ Declaração de constantes
+
+const int DIM = 7;
+
+// Declaração do vetor ou struct
+
+int valores[DIM] = {54, 35, 67, 97, 101, 43, 153};
+
+// Declaração de Variáveis
+
+int MenuEscolhido;
+
+// Declaração de Funções
+
+void Função_Padrão1();
+
+void Função_Padrão2();
+
+void Função_Padrão3();
+
+void Função_Padrão4();
+
+void Função_Padrão5();
+
+void Função_Padrão6();
+
+void Função_Padrão7();
+
+int main()
+{
+    setlocale(LC_ALL, "pt_PT.utf8");
+
+    system("color 0e");
+
+    EscolhaMenu();
+
+    return 0;
+}
+
+void Menu_Principal()
+{
+
+    system("cls");
+
+    puts("\t");
+    puts("\t1 - ");
+    puts("\t2 - ");
+    puts("\t3 - ");
+    puts("\t4 - ");
+    puts("\t5 - ");
+
+    cout << "\n\n\tInsira a sua escolha: ";
+
+    cin >> MenuEscolhido;
+}
+
+void EscolhaMenu()
+{
+
+    do
+    {
+
+        Menu_Principal();
+
+        if (MenuEscolhido != 0)
+        {
+
+            switch (MenuEscolhido)
+            {
+            case 1:
+
+                Mostrar_Registro_de_Quilometragens();
+                break;
+
+            case 2:
+
+                Quilometragem_Maxima();
+                break;
+
+            case 3:
+
+                Quilometragem_Minima();
+                break;
+
+            case 4:
+                Ordem_Crescente();
+                break;
+
+            case 5:
+
+                Ordem_Decrescente();
+                break;
+
+            default:
+
+                puts("\t");
+                puts("\tEscolha inválida, tente novamente");
+                cout << "\n\n\t";
+                system("pause");
+                break;
+            }
+        }
+
+    } while (MenuEscolhido != 0);
+
+    Sair();
+}
+
+

@@ -92,11 +92,38 @@ int novo_cliente()
 
         puts("\n===========================================\n");
 
+        Num_Clientes++;
+
         return 1;
     }
 
-    "\n\tErro! Não é possível adiconar mais clientes!";
-    return 0;
+    else
+    {
+        "\n\tErro! Não é possível adiconar mais clientes!";
+        return 0;
+    }
+}
+
+void mostrar_todos_clientes()
+{
+
+    system("cls");
+
+    _sleep(300);
+
+    puts("================ TODOS OS CLIENTES ================");
+
+    for (int i = 0; i < Num_Clientes; i++)
+    {
+
+    cout << "\n\t [" << i+1 << "]:" <<  clientes[i].nome <<  ", " << clientes[Num_Clientes].email << ", " <<   ;
+
+
+            
+
+    }
+
+    puts("\n===========================================\n");
 }
 
 int menu_clientes()
@@ -124,24 +151,9 @@ int menu_clientes()
 
     cin >> Opcao_Escolhida;
 
-    Opcao_Escolhida;
+    return Opcao_Escolhida;
 
-    switch (Opcao_Escolhida)
-    {
-
-    case 1:
-        novo_cliente();
-        system("pause");
-        break;
-
-    default:
-        puts("\nERRO:Inseriu uma opção inválida.\nTente novamente.\n\n");
-        system("pause");
-
-        break;
-    }
-
-    return 0;
+    // return 0;
 }
 
 int main()
@@ -150,7 +162,7 @@ int main()
 
     system("color 0e");
 
-    int opcao;
+    int opcao, opcao_menu_clientes, res;
 
     do
     {
@@ -160,17 +172,44 @@ int main()
         {
 
         case 1:
-            menu_clientes();
-            break;
 
-        default:
-            puts("\nERRO:Inseriu uma opção inválida.\nTente novamente.\n\n");
-            system("pause");
-            opcao = -1;
-            break;
+            do
+            {
+                opcao_menu_clientes = menu_clientes();
+
+                switch (opcao_menu_clientes)
+                {
+
+                case 1:
+                    res = novo_cliente();
+                    
+                    if (res)
+                        cout << "Adicionado!\n\n";
+                    else
+                        cout << "Erro!\n\n";
+                   
+                    system("pause");
+                    
+                    break;
+
+                case 2:
+
+                    mostrar_todos_clientes();
+                    break;
+
+                case 0:
+                    break;
+
+                default:
+                    puts("\nERRO:Inseriu uma opção inválida.\nTente novamente.\n\n");
+                    system("pause");
+
+                    break;
+                }
+            } while (opcao_menu_clientes != 0);
         }
 
-    } while (opcao = 0);
+    } while (opcao != 0);
 
     cout << "\nObrigado por usar o programa. Até à proxima.\n\n";
 

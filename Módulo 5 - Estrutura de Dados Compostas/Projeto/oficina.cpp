@@ -10,6 +10,8 @@ using namespace std;
 
 const int MAX_CLIENTE = 20;
 
+int Num_Clientes = 8;
+
 struct Cliente
 {
 
@@ -25,6 +27,12 @@ struct Cliente
 Cliente clientes[MAX_CLIENTE] = {
     {1, "João Pinto", "j.pint@gmail.com", 912352513},
     {2, "Ana Sousa", "a na_sousa@gmail.com", 913357788},
+    {3, "Rita Santos", "rs@sapo.pt", 936789147},
+    {4, "Rui Lopes ", "ruislopeshotmail.com", 923852456},
+    {5, "Carlos Torres", "carlosmt@ctt.com", 967258456},
+    {6, "Miguel Castro", "migas@sapo.pt", 968124637},
+    {7, "Teresa Silva", "tsmp@gmail.com", 912785423},
+    {8, "Lucinda Sá", "lmss@hotmail.com", 934254713},
 
 };
 
@@ -53,6 +61,44 @@ int menu_principal()
     return Opcao_Escolhida;
 }
 
+int novo_cliente()
+{
+
+    // 9.2. Leia os dados de um novo cliente e insira na primeira posição livre do vetor clientes.
+    // 9.3. Devolva 1 no caso de se ter inserido com sucesso o novo cliente(não se ultrapassou
+    // o limite do vetor) ou 0 no caso de não ter sido possível inserir novo cliente.
+
+    if (Num_Clientes < MAX_CLIENTE)
+    {
+
+        system("cls");
+
+        _sleep(300);
+
+        puts("================ NOVO CLIENTE ================");
+
+        puts("\n\t1 - Insira Dados de um novo Cliente");
+
+        cin.ignore();
+
+        cout << "\n\tNome:";
+        getline(cin, clientes[Num_Clientes].nome);
+
+        cout << "\n\tEmail:";
+        getline(cin, clientes[Num_Clientes].email);
+
+        cout << "\n\tTelemóvel:";
+        cin >> clientes[Num_Clientes].tlm;
+
+        puts("\n===========================================\n");
+
+        return 1;
+    }
+
+    "\n\tErro! Não é possível adiconar mais clientes!";
+    return 0;
+}
+
 int menu_clientes()
 {
 
@@ -60,7 +106,7 @@ int menu_clientes()
 
     system("cls");
 
-    _sleep(400);
+    _sleep(300);
 
     puts("================ MENU CLIENTES ================");
 
@@ -78,10 +124,27 @@ int menu_clientes()
 
     cin >> Opcao_Escolhida;
 
-    return Opcao_Escolhida;
+    Opcao_Escolhida;
+
+    switch (Opcao_Escolhida)
+    {
+
+    case 1:
+        novo_cliente();
+        system("pause");
+        break;
+
+    default:
+        puts("\nERRO:Inseriu uma opção inválida.\nTente novamente.\n\n");
+        system("pause");
+
+        break;
+    }
+
+    return 0;
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
     setlocale(LC_ALL, "pt_PT.utf8");
 

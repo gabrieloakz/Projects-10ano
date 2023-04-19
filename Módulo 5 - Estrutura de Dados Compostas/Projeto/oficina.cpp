@@ -156,12 +156,6 @@ int mostrar_cliente(int id)
 
     _sleep(300);
 
-    // 11.2. Mostre no ecrã todas as informações do cliente cujo campo idCliente seja igual
-    // ao recebido valor.
-    // 11.3. A função deverá devolver o valor 1 no caso de sucesso (ou seja, o cliente existe
-    // e foi mostrada a respetiva informação) ou 0 no caso de insucesso (o cliente não
-    // existe)
-
     if (id < Num_Clientes + 1)
     {
 
@@ -207,12 +201,12 @@ int menu_clientes()
 int novo_automovel()
 {
 
+    system("cls");
+
+    _sleep(300);
+
     if (Num_Automveis < MAX_AUTO)
     {
-
-        system("cls");
-
-        _sleep(300);
 
         puts("================ NOVO AUTOMÓVEL ================");
 
@@ -256,7 +250,7 @@ int novo_automovel()
 void mostrar_todos_automoveis()
 {
 
-system("cls");
+    system("cls");
 
     _sleep(300);
 
@@ -271,9 +265,6 @@ system("cls");
     puts("\n===================================================\n\n");
 
     system("pause");
-
-
-
 }
 
 int menu_automoveis()
@@ -388,7 +379,7 @@ int main()
 
                 switch (opcao_menu_automoveis)
                 {
-                
+
                 case 1:
 
                     res = novo_automovel();
@@ -402,10 +393,10 @@ int main()
                     break;
 
                 case 2:
-                
-                mostrar_todos_automoveis();
-                break;
-                
+
+                    mostrar_todos_automoveis();
+                    break;
+
                 default:
                     break;
                 }

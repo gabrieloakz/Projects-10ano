@@ -284,7 +284,7 @@ int mostrar_automovel(int id)
 
     if (numcarros)
     {
-        cout << "\n\tO cliente com este id tem: " << numcarros << " carros.\n";
+        cout << "\n\tO cliente com este id tem: " << numcarros << " carro" << (numcarros > 1 ? "s" : "") << ".\n";
         return 1;
     }
     return 0;
@@ -327,17 +327,17 @@ int automoveis_telemovel(int tlm)
 
     _sleep(300);
 
-    for (int i = 0; i < Num_Automveis; i++)
+    int numcarros = 0;
+
+    for (int i = 0; i < Num_Clientes; i++)
     {
-        if (/* condition */)
+        if (clientes[i].tlm == tlm)
         {
-            /* code */
+            mostrar_automovel(clientes[i].idCliente);
+            return 1;
         }
-        
     }
-    
-
-
+    return 0;
 }
 
 int menu_pesquisas()
@@ -374,7 +374,7 @@ int main()
 
     system("color 0e");
 
-    int opcao, opcao_menu_clientes, opcao_menu_automoveis, opcao_menu_pesquisas, res, idCliente;
+    int opcao, opcao_menu_clientes, opcao_menu_automoveis, opcao_menu_pesquisas, res, idCliente, tlm;
 
     do
     {
@@ -396,9 +396,9 @@ int main()
                     res = novo_cliente();
 
                     if (res)
-                        cout << "Adicionado!\n\n";
+                        cout << "\n\tAdicionado!\n\n";
                     else
-                        cout << "Erro!\n\n";
+                        cout << "\n\tErro!\n\n";
 
                     system("pause");
 
@@ -425,9 +425,9 @@ int main()
                     res = mostrar_cliente(idCliente);
 
                     if (res)
-                        cout << "Sucesso!\n\n";
+                        cout << "\n\tSucesso!\n\n";
                     else
-                        cout << "Insucesso!\n\n";
+                        cout << "\n\tInsucesso!\n\n";
 
                     system("pause");
                     break;
@@ -458,9 +458,9 @@ int main()
                     res = novo_automovel();
 
                     if (res)
-                        cout << "Adicionado!\n\n";
+                        cout << "\n\tAdicionado!\n\n";
                     else
-                        cout << "Erro!\n\n";
+                        cout << "\n\tErro!\n\n";
 
                     system("pause");
                     break;
@@ -485,9 +485,9 @@ int main()
                     res = mostrar_automovel(idCliente);
 
                     if (res)
-                        cout << "Sucesso!\n\n";
+                        cout << "\n\tSucesso!\n\n";
                     else
-                        cout << "Insucesso!\n\n";
+                        cout << "\n\tInsucesso!\n\n";
 
                     system("pause");
                     break;
@@ -501,12 +501,11 @@ int main()
         case 3:
             do
             {
-                opcao_menu_pesquisas = opcao_menu_pesquisas();
+                opcao_menu_pesquisas = menu_pesquisas();
 
                 switch (opcao_menu_pesquisas)
                 {
                 case 1:
-                    res = ;
 
                     system("cls");
 
@@ -522,9 +521,9 @@ int main()
                     res = automoveis_telemovel(tlm);
 
                     if (res)
-                        cout << "Sucesso!\n\n";
+                        cout << "\n\tSucesso!\n\n";
                     else
-                        cout << "Insucesso!\n\n";
+                        cout << "\n\tInsucesso!\n\n";
 
                     system("pause");
                     break;

@@ -156,18 +156,15 @@ int mostrar_cliente(int id)
 
     _sleep(300);
 
-    if (id < Num_Clientes + 1)
+    for (int i = 0; i < Num_Clientes; i++)
     {
-
-        id--;
-        cout << "\n\t [" << id + 1 << "]:" << clientes[id].nome << ", " << clientes[id].email << ", " << clientes[id].tlm;
-        return 1;
+        if (clientes[i].idCliente == id)
+        {
+            cout << "\n\t [" << id << "]:" << clientes[i].nome << ", " << clientes[i].email << ", " << clientes[i].tlm;
+            return 1;
+        }
     }
-
-    else
-    {
-        return 0;
-    }
+    return 0;
 }
 
 int menu_clientes()
@@ -259,12 +256,38 @@ void mostrar_todos_automoveis()
     for (int i = 0; i < Num_Automveis; i++)
     {
 
-        cout << "\n\t [" << i + 1 << "]:" << automoveis[i].idCliente << ", " << automoveis[i].email << ", " << automoveis[i].tlm << "\n";
+        cout << "\n\t [" << i + 1 << "]:" << automoveis[i].idCliente << ", " << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
     }
 
     puts("\n===================================================\n\n");
 
     system("pause");
+}
+
+int mostrar_automovel(int id)
+{
+    int numcarros = 0;
+
+    system("cls");
+
+    _sleep(300);
+
+    for (int i = 0; i < Num_Automveis; i++)
+    {
+        if (automoveis[i].idCliente == id)
+        {
+            cout << "\n\t [" << automoveis[i].idAuto << "]:" << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
+
+            numcarros++;
+        }
+    }
+
+    if (numcarros)
+    {
+        cout << "\n\tO cliente com este id tem: " << numcarros << " carros.\n";
+        return 1;
+    }
+    return 0;
 }
 
 int menu_automoveis()
@@ -295,13 +318,63 @@ int menu_automoveis()
     return Opcao_Escolhida;
 }
 
+int automoveis_telemovel(int tlm)
+{
+
+    // Mostre os automóveis do cliente com um determinado telemóvel;
+
+    system("cls");
+
+    _sleep(300);
+
+    for (int i = 0; i < Num_Automveis; i++)
+    {
+        if (/* condition */)
+        {
+            /* code */
+        }
+        
+    }
+    
+
+
+}
+
+int menu_pesquisas()
+{
+
+    int Opcao_Escolhida;
+
+    system("cls");
+
+    _sleep(300);
+
+    puts("================ MENU PESQUISAS ================");
+
+    puts("\n\t1 - Pesquisar automóveis do cliente com um determinado telemóvel");
+
+    puts("\n\t2 - Pesquisar automóveis com matrícula igual ou anterior a um dado ano");
+
+    puts("\n\t3 - Pesquisar automóveis com matrícula igual ou posterior a um dado ano");
+
+    puts("\n\n\t0 - Pesquisar o automóvel com um certo número de chassi");
+
+    puts("\n===============================================\n");
+
+    cout << "Opção: ";
+
+    cin >> Opcao_Escolhida;
+
+    return Opcao_Escolhida;
+}
+
 int main()
 {
     setlocale(LC_ALL, "pt_PT.utf8");
 
     system("color 0e");
 
-    int opcao, opcao_menu_clientes, opcao_menu_automoveis, res, idCliente;
+    int opcao, opcao_menu_clientes, opcao_menu_automoveis, opcao_menu_pesquisas, res, idCliente;
 
     do
     {
@@ -397,11 +470,69 @@ int main()
                     mostrar_todos_automoveis();
                     break;
 
+                case 3:
+                    system("cls");
+
+                    _sleep(300);
+
+                    puts("================ PESQUISAR AUTOMÓVEIS ================\n\t");
+
+                    cout << "Insira o ID desejado:";
+                    cin >> idCliente;
+
+                    puts("\n===============================================\n");
+
+                    res = mostrar_automovel(idCliente);
+
+                    if (res)
+                        cout << "Sucesso!\n\n";
+                    else
+                        cout << "Insucesso!\n\n";
+
+                    system("pause");
+                    break;
+
                 default:
                     break;
                 }
 
-            } while (opcao_menu_clientes != 0);
+            } while (opcao_menu_automoveis != 0);
+
+        case 3:
+            do
+            {
+                opcao_menu_pesquisas = opcao_menu_pesquisas();
+
+                switch (opcao_menu_pesquisas)
+                {
+                case 1:
+                    res = ;
+
+                    system("cls");
+
+                    _sleep(300);
+
+                    puts("================ PESQUISAR AUTOMÓVEIS COM TELEMÓVEL ================\n\t");
+
+                    cout << "Insira o telem:";
+                    cin >> tlm;
+
+                    puts("\n===============================================\n");
+
+                    res = automoveis_telemovel(tlm);
+
+                    if (res)
+                        cout << "Sucesso!\n\n";
+                    else
+                        cout << "Insucesso!\n\n";
+
+                    system("pause");
+                    break;
+
+                default:
+                    break;
+                }
+            } while (opcao_menu_pesquisas != 0);
         }
 
     } while (opcao != 0);

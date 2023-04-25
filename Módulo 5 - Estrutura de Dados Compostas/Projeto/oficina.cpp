@@ -340,6 +340,10 @@ int automoveis_telemovel(int tlm)
     return 0;
 }
 
+int automoveis_matricula_passado()
+{
+}
+
 int menu_pesquisas()
 {
 
@@ -374,7 +378,7 @@ int main()
 
     system("color 0e");
 
-    int opcao, opcao_menu_clientes, opcao_menu_automoveis, opcao_menu_pesquisas, res, idCliente, tlm;
+    int opcao, opcao_menu_clientes, opcao_menu_automoveis, opcao_menu_pesquisas, res, idCliente, tlm, ;
 
     do
     {
@@ -441,97 +445,133 @@ int main()
 
                     break;
                 }
-            } while (opcao_menu_clientes != 0);
+            } while (opcao_menu_clientes != 0); // Menu clientes
 
-        case 2:
-
-            do
-
+            if (opcao_menu_clientes != 0) // Menu automóveis
             {
-                opcao_menu_automoveis = menu_automoveis();
 
-                switch (opcao_menu_automoveis)
+            case 2:
+
+                do
+
                 {
+                    opcao_menu_automoveis = menu_automoveis();
 
-                case 1:
+                    switch (opcao_menu_automoveis)
+                    {
 
-                    res = novo_automovel();
+                    case 1:
 
-                    if (res)
-                        cout << "\n\tAdicionado!\n\n";
-                    else
-                        cout << "\n\tErro!\n\n";
+                        res = novo_automovel();
 
-                    system("pause");
-                    break;
+                        if (res)
+                            cout << "\n\tAdicionado!\n\n";
+                        else
+                            cout << "\n\tErro!\n\n";
 
-                case 2:
+                        system("pause");
+                        break;
 
-                    mostrar_todos_automoveis();
-                    break;
+                    case 2:
 
-                case 3:
-                    system("cls");
+                        mostrar_todos_automoveis();
+                        break;
 
-                    _sleep(300);
+                    case 3:
+                        system("cls");
 
-                    puts("================ PESQUISAR AUTOMÓVEIS ================\n\t");
+                        _sleep(300);
 
-                    cout << "Insira o ID desejado:";
-                    cin >> idCliente;
+                        puts("================ PESQUISAR AUTOMÓVEIS ================\n\t");
 
-                    puts("\n===============================================\n");
+                        cout << "Insira o ID desejado:";
+                        cin >> idCliente;
 
-                    res = mostrar_automovel(idCliente);
+                        puts("\n===============================================\n");
 
-                    if (res)
-                        cout << "\n\tSucesso!\n\n";
-                    else
-                        cout << "\n\tInsucesso!\n\n";
+                        res = mostrar_automovel(idCliente);
 
-                    system("pause");
-                    break;
+                        if (res)
+                            cout << "\n\tSucesso!\n\n";
+                        else
+                            cout << "\n\tInsucesso!\n\n";
 
-                default:
-                    break;
-                }
+                        system("pause");
+                        break;
 
-            } while (opcao_menu_automoveis != 0);
+                    default:
 
-        case 3:
-            do
+                        puts("\nERRO:Inseriu uma opção inválida.\nTente novamente.\n\n");
+                        system("pause");
+                        break;
+                    }
+
+                } while (opcao_menu_automoveis != 0);
+            }
+
+            if (opcao_menu_clientes && opcao_menu_automoveis != 0) // Menu pesquisas
             {
-                opcao_menu_pesquisas = menu_pesquisas();
+            case 3:
 
-                switch (opcao_menu_pesquisas)
+                do
+
                 {
-                case 1:
+                    opcao_menu_pesquisas = menu_pesquisas();
 
-                    system("cls");
+                    switch (opcao_menu_pesquisas)
+                    {
+                    case 1:
 
-                    _sleep(300);
+                        system("cls");
 
-                    puts("================ PESQUISAR AUTOMÓVEIS COM TELEMÓVEL ================\n\t");
+                        _sleep(300);
 
-                    cout << "Insira o telem:";
-                    cin >> tlm;
+                        puts("================ PESQUISAR AUTOMÓVEIS COM TELEMÓVEL ================\n\t");
 
-                    puts("\n===============================================\n");
+                        cout << "Insira o telem:";
+                        cin >> tlm;
 
-                    res = automoveis_telemovel(tlm);
+                        puts("\n===============================================\n");
 
-                    if (res)
-                        cout << "\n\tSucesso!\n\n";
-                    else
-                        cout << "\n\tInsucesso!\n\n";
+                        res = automoveis_telemovel(tlm);
 
-                    system("pause");
-                    break;
+                        if (res)
+                            cout << "\n\tSucesso!\n\n";
+                        else
+                            cout << "\n\tInsucesso!\n\n";
 
-                default:
-                    break;
-                }
-            } while (opcao_menu_pesquisas != 0);
+                        system("pause");
+                        break;
+
+                    case 2:
+                        system("cls");
+                        
+                        puts("================ PESQUISAR AUTOMÓVEIS COM MATRÍCULA PASSADO ================\n\t");
+
+                        puts("Pesquisa os automóveis com matrícula igual ou anterior a um dado ano;")
+                        
+                        cout << "Insira a matrícula:";
+                        cin >> ;
+
+                        puts("\n===============================================\n");
+
+                        res = automoveis_matricula_passado();
+
+                        if (res)
+                            cout << "\n\tSucesso!\n\n";
+                        else
+                            cout << "\n\tInsucesso!\n\n";
+
+                        system("pause");
+                        break;
+
+                    default:
+                        puts("\nERRO:Inseriu uma opção inválida.\nTente novamente.\n\n");
+                        system("pause");
+                        break;
+                    }
+                } while (opcao_menu_pesquisas != 0);
+            }
         }
 
     } while (opcao != 0);

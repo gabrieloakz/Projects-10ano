@@ -105,7 +105,7 @@ int novo_cliente()
 
         _sleep(300);
 
-        puts("================ NOVO CLIENTE ================");
+        puts("================ NOVO CLIENTE ==============");
 
         puts("\n\t1 - Insira Dados de um novo Cliente");
 
@@ -120,7 +120,7 @@ int novo_cliente()
         cout << "\n\tTelemóvel:";
         cin >> clientes[Num_Clientes].tlm;
 
-        puts("\n===========================================\n");
+        puts("\n============================================\n");
 
         Num_Clientes++;
 
@@ -141,7 +141,7 @@ void mostrar_todos_clientes()
 
     _sleep(300);
 
-    puts("==================== TODOS OS CLIENTES ================");
+    puts("==================== TODOS OS CLIENTES ====================");
 
     for (int i = 0; i < Num_Clientes; i++)
     {
@@ -149,7 +149,7 @@ void mostrar_todos_clientes()
         cout << "\n\t [" << i + 1 << "]:" << clientes[i].nome << ", " << clientes[i].email << ", " << clientes[i].tlm << "\n";
     }
 
-    puts("\n===================================================\n\n");
+    puts("\n===========================================================\n\n");
 
     system("pause");
 }
@@ -455,9 +455,9 @@ int main()
                     res = novo_cliente();
 
                     if (res)
-                        cout << "\n\tAdicionado!\n\n";
+                        cout << "\nAdicionado!\n\n";
                     else
-                        cout << "\n\tErro!\n\n";
+                        cout << "\nErro!\n\n";
 
                     system("pause");
 

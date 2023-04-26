@@ -103,8 +103,6 @@ int novo_cliente()
 
         system("cls");
 
-        _sleep(300);
-
         puts("================ NOVO CLIENTE ==============");
 
         puts("\n\t1 - Insira Dados de um novo Cliente");
@@ -139,8 +137,6 @@ void mostrar_todos_clientes()
 
     system("cls");
 
-    _sleep(300);
-
     puts("==================== TODOS OS CLIENTES ====================");
 
     for (int i = 0; i < Num_Clientes; i++)
@@ -159,9 +155,7 @@ int mostrar_cliente(int id)
 
     system("cls");
 
-    _sleep(300);
-
-    for (int i = 0; i < Num_Clientes; i++)
+    for (int i = 0; i < MAX_CLIENTE ; i++)
     {
         if (clientes[i].idCliente == id)
         {
@@ -178,8 +172,6 @@ int menu_clientes()
     int Opcao_Escolhida;
 
     system("cls");
-
-    _sleep(300);
 
     puts("================ MENU CLIENTES ==================");
 
@@ -204,8 +196,6 @@ int novo_automovel()
 {
 
     system("cls");
-
-    _sleep(300);
 
     if (Num_Automveis < MAX_AUTO)
     {
@@ -254,8 +244,6 @@ void mostrar_todos_automoveis()
 
     system("cls");
 
-    _sleep(300);
-
     puts("==================== TODOS OS AUTOMÓVEIS ================");
 
     for (int i = 0; i < Num_Automveis; i++)
@@ -274,8 +262,6 @@ int mostrar_automovel(int id)
     int numcarros = 0;
 
     system("cls");
-
-    _sleep(300);
 
     for (int i = 0; i < Num_Automveis; i++)
     {
@@ -302,8 +288,6 @@ int menu_automoveis()
 
     system("cls");
 
-    _sleep(300);
-
     puts("================ MENU AUTOMÓVEIS ================");
 
     puts("\n\t1 - Inserir novo automóvel");
@@ -329,8 +313,6 @@ int automoveis_telemovel(int tlm)
     // Mostre os automóveis do cliente com um determinado telemóvel;
 
     system("cls");
-
-    _sleep(300);
 
     int numcarros = 0;
 
@@ -388,8 +370,8 @@ int automoveis_numchassi(string numchassi_input)
     for (int i = 0; i < Num_Automveis; i++)
     {
         if (numchassi_input.compare(automoveis[i].num_chassi) == 0)
-        
-        cout << "\n\t [" << automoveis[i].idAuto << "]:" << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
+
+            cout << "\n\t [" << automoveis[i].idAuto << "]:" << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
         Num_carros++;
     }
 
@@ -402,8 +384,6 @@ int menu_pesquisas()
     int Opcao_Escolhida;
 
     system("cls");
-
-    _sleep(300);
 
     puts("================ MENU PESQUISAS ================");
 
@@ -472,8 +452,6 @@ int main()
 
                     system("cls");
 
-                    _sleep(300);
-
                     puts("================ PESQUISAR CLIENTES ================\n\t");
 
                     cout << "Insira o ID desejado:";
@@ -535,8 +513,6 @@ int main()
                     case 3:
                         system("cls");
 
-                        _sleep(300);
-
                         puts("================ PESQUISAR AUTOMÓVEIS ================\n\t");
 
                         cout << "Insira o ID desejado:";
@@ -552,6 +528,9 @@ int main()
                             cout << "\n\tInsucesso!\n\n";
 
                         system("pause");
+                        break;
+
+                    case 0:
                         break;
 
                     default:
@@ -578,8 +557,6 @@ int main()
                     case 1:
 
                         system("cls");
-
-                        _sleep(300);
 
                         puts("================ PESQUISAR AUTOMÓVEIS COM TELEMÓVEL ================\n\t");
 
@@ -660,6 +637,10 @@ int main()
                             cout << "\n\tInsucesso! Não há automóveis com este número de chassi!\n\n";
 
                         system("pause");
+                        break;
+
+                    case 0:
+
                         break;
 
                     default:

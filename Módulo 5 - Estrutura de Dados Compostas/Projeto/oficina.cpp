@@ -32,10 +32,15 @@ struct Automovel
 {
 
     int idAuto;
+
     int idCliente;
+
     string marca;
+
     string modelo;
+
     int ano;
+
     string num_chassi;
 };
 
@@ -176,7 +181,7 @@ int menu_clientes()
 
     _sleep(300);
 
-    puts("================ MENU CLIENTES ================");
+    puts("================ MENU CLIENTES ==================");
 
     puts("\n\t1 - Inserir Clientes");
 
@@ -186,7 +191,7 @@ int menu_clientes()
 
     puts("\n\n\t0 - Sair");
 
-    puts("\n===============================================\n");
+    puts("\n=================================================\n");
 
     cout << "Opção: ";
 
@@ -340,8 +345,55 @@ int automoveis_telemovel(int tlm)
     return 0;
 }
 
-int automoveis_matricula_passado()
+int automoveis_matricula_anteriores(int ano_input)
 {
+
+    // Mostre os automóveis com matrícula igual ou anterior a um dado ano;
+
+    int Num_carros = 0;
+
+    for (int i = 0; i < Num_Automveis; i++)
+    {
+        if (automoveis[i].ano <= ano_input)
+        {
+            cout << "\n\t [" << automoveis[i].idAuto << "]:" << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
+            Num_carros++;
+        }
+    }
+
+    return Num_carros;
+}
+
+int automoveis_matricula_posteriores(int ano_input)
+{
+
+    int Num_carros = 0;
+
+    for (int i = 0; i < Num_Automveis; i++)
+    {
+        if (automoveis[i].ano >= ano_input)
+        {
+            cout << "\n\t [" << automoveis[i].idAuto << "]:" << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
+            Num_carros++;
+        }
+    }
+
+    return Num_carros;
+}
+
+int automoveis_numchassi(string numchassi_input)
+{
+    int Num_carros = 0;
+
+    for (int i = 0; i < Num_Automveis; i++)
+    {
+        if (numchassi_input.compare(automoveis[i].num_chassi) == 0)
+        
+        cout << "\n\t [" << automoveis[i].idAuto << "]:" << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
+        Num_carros++;
+    }
+
+    return Num_carros;
 }
 
 int menu_pesquisas()
@@ -361,6 +413,8 @@ int menu_pesquisas()
 
     puts("\n\t3 - Pesquisar automóveis com matrícula igual ou posterior a um dado ano");
 
+    puts("\n\t4 - Pesquisar automóvel com um certo número de chassi;");
+
     puts("\n\n\t0 - Pesquisar o automóvel com um certo número de chassi");
 
     puts("\n===============================================\n");
@@ -378,7 +432,8 @@ int main()
 
     system("color 0e");
 
-    int opcao, opcao_menu_clientes, opcao_menu_automoveis, opcao_menu_pesquisas, res, idCliente, tlm, ;
+    int opcao, opcao_menu_clientes, opcao_menu_automoveis, opcao_menu_pesquisas, res, idCliente, tlm, ano_input;
+    string numchassi_input;
 
     do
     {
@@ -545,22 +600,64 @@ int main()
 
                     case 2:
                         system("cls");
-                        
-                        puts("================ PESQUISAR AUTOMÓVEIS COM MATRÍCULA PASSADO ================\n\t");
 
-                        puts("Pesquisa os automóveis com matrícula igual ou anterior a um dado ano;")
-                        
-                        cout << "Insira a matrícula:";
-                        cin >> ;
+                        puts("================ PESQUISAR AUTOMÓVEIS COM MATRÍCULA E ANTERIORES ================\n\t");
+
+                        puts("Pesquisa os automóveis com matrícula igual ou anterior a um dado ano.\n\t");
+
+                        cout << "Insira o ano da matrícula: ";
+                        cin >> ano_input;
 
                         puts("\n===============================================\n");
 
-                        res = automoveis_matricula_passado();
+                        res = automoveis_matricula_anteriores(ano_input);
 
                         if (res)
                             cout << "\n\tSucesso!\n\n";
                         else
-                            cout << "\n\tInsucesso!\n\n";
+                            cout << "\n\tInsucesso! Não há automóveis matriculados neste período\n\n";
+
+                        system("pause");
+                        break;
+
+                    case 3:
+                        system("cls");
+
+                        puts("================ PESQUISAR AUTOMÓVEIS COM MATRÍCULA E POSTERIORES ================\n\t");
+
+                        puts("Pesquisa os automóveis com matrícula igual ou posterior a um dado ano.\n\t");
+
+                        cout << "Insira o ano da matrícula: ";
+                        cin >> ano_input;
+
+                        puts("\n===============================================\n");
+
+                        res = automoveis_matricula_posteriores(ano_input);
+
+                        if (res)
+                            cout << "\n\tSucesso!\n\n";
+                        else
+                            cout << "\n\tInsucesso! Não há automóveis matriculados neste período\n\n";
+
+                        system("pause");
+                        break;
+
+                    case 4:
+                        system("cls");
+
+                        puts("================ PESQUISAR AUTOMÓVEIS COM NÚMERO DE CHASSI ================\n\t");
+
+                        cout << "Insira o número do chassi: ";
+                        cin >> numchassi_input;
+
+                        puts("\n===============================================\n");
+
+                        res = automoveis_numchassi(numchassi_input);
+
+                        if (res)
+                            cout << "\n\tSucesso!\n\n";
+                        else
+                            cout << "\n\tInsucesso! Não há automóveis com este número de chassi!\n\n";
 
                         system("pause");
                         break;

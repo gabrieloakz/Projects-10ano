@@ -53,7 +53,6 @@ Cliente clientes[MAX_CLIENTE] = {
     {6, "Miguel Castro", "migas@sapo.pt", 968124637},
     {7, "Teresa Silva", "tsmp@gmail.com", 912785423},
     {8, "Lucinda Sá", "lmss@hotmail.com", 934254713},
-
 };
 
 Automovel automoveis[MAX_AUTO] = {
@@ -134,8 +133,7 @@ int novo_cliente()
     }
 }
 
-void mostrar_todos_clientes()
-{
+void mostrar_todos_clientes(){
 
     system("cls");
 

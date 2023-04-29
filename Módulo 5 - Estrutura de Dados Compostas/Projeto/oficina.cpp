@@ -369,7 +369,7 @@ int automoveis_numchassi(string numchassi_input)
         if (numchassi_input.compare(automoveis[i].num_chassi) == 0)
 
             cout << "\n\t [" << automoveis[i].idAuto << "]:" << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
-            Num_carros++;
+        Num_carros++;
     }
 
     return Num_carros;

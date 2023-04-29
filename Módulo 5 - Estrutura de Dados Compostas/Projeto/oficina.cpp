@@ -131,7 +131,8 @@ int novo_cliente()
     }
 }
 
-void mostrar_todos_clientes(){
+void mostrar_todos_clientes()
+{
 
     system("cls");
 
@@ -153,7 +154,7 @@ int mostrar_cliente(int id)
 
     system("cls");
 
-    for (int i = 0; i < MAX_CLIENTE ; i++)
+    for (int i = 0; i < MAX_CLIENTE; i++)
     {
         if (clientes[i].idCliente == id)
         {
@@ -308,8 +309,6 @@ int menu_automoveis()
 int automoveis_telemovel(int tlm)
 {
 
-    // Mostre os automóveis do cliente com um determinado telemóvel;
-
     system("cls");
 
     int numcarros = 0;
@@ -370,7 +369,7 @@ int automoveis_numchassi(string numchassi_input)
         if (numchassi_input.compare(automoveis[i].num_chassi) == 0)
 
             cout << "\n\t [" << automoveis[i].idAuto << "]:" << automoveis[i].marca << ", " << automoveis[i].modelo << ", " << automoveis[i].ano << ", " << automoveis[i].num_chassi << "\n";
-        Num_carros++;
+            Num_carros++;
     }
 
     return Num_carros;

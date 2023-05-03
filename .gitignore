@@ -1,0 +1,5 @@
+## ignorar extensopes inuteis
+.exe
+.ilk
+.obj
+.pdb

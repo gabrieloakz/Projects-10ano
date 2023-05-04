@@ -1,5 +1,6 @@
-## ignorar extensopes inuteis
-.exe
-.ilk
-.obj
-.pdb
+# Ignorar arquivos com as extensões .exe, .ilk, .obj e .pdb
+*.exe
+*.ilk
+*.obj
+*.pdb
+

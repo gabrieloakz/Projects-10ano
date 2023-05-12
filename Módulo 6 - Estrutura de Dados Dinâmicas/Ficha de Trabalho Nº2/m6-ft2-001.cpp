@@ -58,8 +58,8 @@ int Menu_Principal()
 
 void Inserir_um_novo_registo_de_aluno()
 {
-    // Cria-se um ponteiro que cria um novo endereço de memória, um novo nó,
-    // e verifica se houve erro ao alocar memória.
+    // Cria-se um ponteiro que aponta para um endereço de memória,
+    // criando um novo nó, e verifica se houve erro ao alocar memória.
 
     Nó *Ponteiro_auxiliar = new Nó;
 
@@ -71,7 +71,9 @@ void Inserir_um_novo_registo_de_aluno()
 
     // Pede ao utilizador os dados de alunos.
 
-    cout << "\n\t1 - Insira o Registo do Aluno\n";
+    system("cls");
+
+    cout << "\n\tInsira o Registo do Aluno\n";
 
     cin.ignore();
 
@@ -104,6 +106,39 @@ void Inserir_um_novo_registo_de_aluno()
         }
         atual->prox = Ponteiro_auxiliar;
     }
+}
+
+void Listar_todos_os_registos()
+{
+
+    // Ponteiro auxiliar para percorrer a lista.
+
+    Nó *atual = inicio;
+
+    int Numero_Registros = 0;
+
+    system("cls");
+
+    cout << "\n\tTodos os Registos de Alunos\n";
+
+    // Enquanto a lista não estiver vazia, percorre a lista.
+
+    while (atual != NULL)
+    {
+        // Incrementa o numero de registros.
+        
+        Numero_Registros++;
+
+        cout << "\n\t"<< "( " << Numero_Registros << " )" << atual->Aluno.nome << " - " << atual->Aluno.nota;
+
+        // Ponteiro auxiliar avança para o próximo nó.
+
+        atual = atual->prox;
+    }
+
+    cout << "\n\n\t";
+
+    system("pause");
 }
 
 int main()
@@ -141,7 +176,7 @@ int main()
 
             case 4:
 
-                // Listar_todos_os_registos();
+                Listar_todos_os_registos();
                 break;
 
             default:

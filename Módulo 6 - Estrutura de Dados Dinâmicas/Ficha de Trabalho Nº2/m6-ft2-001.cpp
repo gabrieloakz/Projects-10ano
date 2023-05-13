@@ -126,10 +126,11 @@ void Listar_todos_os_registos()
     while (atual != NULL)
     {
         // Incrementa o numero de registros.
-        
+
         Numero_Registros++;
 
-        cout << "\n\t"<< "( " << Numero_Registros << " )" << atual->Aluno.nome << " - " << atual->Aluno.nota;
+        // cout << "\n\t"<< "( " << Numero_Registros << " )" << atual->Aluno.nome << " - " << atual->Aluno.nota;
+        printf("\n\t( %d ) %s - %g", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota);
 
         // Ponteiro auxiliar avança para o próximo nó.
 
@@ -139,6 +140,59 @@ void Listar_todos_os_registos()
     cout << "\n\n\t";
 
     system("pause");
+}
+
+void Eliminar_um_registo_contendo_um_determinado_nome()
+{
+
+    // Obs: função não está funcionando como deveria, consertar questao das pausas!
+
+    system("cls");
+
+    cout << "\n\tEliminar o Registo de um Aluno\n";
+
+    string nome_a_eliminar;
+    cout << "\n\tInsira o nome do Aluno: ";
+    getline(cin, nome_a_eliminar);
+
+    if (inicio == NULL)
+    {
+        cout << "\n\n\tA lista esta vazia.\n";
+        cout << "\n\n\t";
+        return;
+    }
+
+    Nó *atual = inicio;
+    Nó *anterior = NULL;
+
+    // Percorre a lista até encontrar o nome a ser eliminado ou chegar ao final da lista.
+    while (atual != NULL)
+    {
+        if (atual->Aluno.nome == nome_a_eliminar)
+        {
+            if (anterior == NULL)
+            {
+                // Caso o nó a ser eliminado seja o primeiro da lista.
+                inicio = atual->prox;
+            }
+            else
+            {
+                // Caso o nó a ser eliminado esteja no meio ou no final da lista.
+                anterior->prox = atual->prox;
+            }
+            delete atual;
+            cout << "\n\tRegistro eliminado.\n";
+            cout << "\n\n\t";
+            cin.ignore(); // Aguarda a entrada do usuário antes de sair da função
+            return;
+        }
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    // Se chegou aqui, significa que o nome não foi encontrado na lista.
+    cout << "\n\tNome nao encontrado na lista.\n";
+    cin.ignore(); // Aguarda a entrada do usuário antes de sair da função
 }
 
 int main()
@@ -166,7 +220,7 @@ int main()
 
             case 2:
 
-                // Eliminar_um_registo_contendo_um_determinado_nome();
+                Eliminar_um_registo_contendo_um_determinado_nome();
                 break;
 
             case 3:

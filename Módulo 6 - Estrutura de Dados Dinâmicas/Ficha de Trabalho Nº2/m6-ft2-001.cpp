@@ -148,10 +148,6 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
 
     cout << "\n\tEliminar o Registo de um Aluno\n";
 
-    string nome_a_eliminar;
-    cout << "\n\tInsira o nome do Aluno: ";
-    getline(cin, nome_a_eliminar);
-
     if (inicio == NULL)
     {
         cout << "\n\n\tA lista esta vazia.\n";
@@ -159,6 +155,11 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
         system("pause");
         return;
     }
+
+    string nome_a_eliminar;
+    cin.ignore(); // Limpar o caractere de nova linha pendente no buffer de entrada
+    cout << "\n\tInsira o nome do Aluno: ";
+    getline(cin, nome_a_eliminar);
 
     Nó *atual = inicio;
     Nó *anterior = NULL;
@@ -172,17 +173,22 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
             {
                 // Caso o nó a ser eliminado seja o primeiro da lista.
                 inicio = atual->prox;
+                delete atual;
+                cout << "\n\tRegistro eliminado.\n";
+                cout << "\n\n\t";
+                system("pause");
+                return;
             }
             else
             {
                 // Caso o nó a ser eliminado esteja no meio ou no final da lista.
                 anterior->prox = atual->prox;
+                delete atual;
+                cout << "\n\tRegistro eliminado.\n";
+                cout << "\n\n\t";
+                system("pause");
+                return;
             }
-            delete atual;
-            cout << "\n\tRegistro eliminado.\n";
-            cout << "\n\n\t";
-            system("pause");
-            return;
         }
         anterior = atual;
         atual = atual->prox;

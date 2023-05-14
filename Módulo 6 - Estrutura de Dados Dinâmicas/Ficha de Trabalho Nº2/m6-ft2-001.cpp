@@ -144,9 +144,6 @@ void Listar_todos_os_registos()
 
 void Eliminar_um_registo_contendo_um_determinado_nome()
 {
-
-    // Obs: função não está funcionando como deveria, consertar questao das pausas!
-
     system("cls");
 
     cout << "\n\tEliminar o Registo de um Aluno\n";
@@ -159,6 +156,7 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
     {
         cout << "\n\n\tA lista esta vazia.\n";
         cout << "\n\n\t";
+        system("pause");
         return;
     }
 
@@ -183,7 +181,7 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
             delete atual;
             cout << "\n\tRegistro eliminado.\n";
             cout << "\n\n\t";
-            cin.ignore(); // Aguarda a entrada do usuário antes de sair da função
+            system("pause");
             return;
         }
         anterior = atual;
@@ -192,7 +190,9 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
 
     // Se chegou aqui, significa que o nome não foi encontrado na lista.
     cout << "\n\tNome nao encontrado na lista.\n";
-    cin.ignore(); // Aguarda a entrada do usuário antes de sair da função
+    cout << "\n\n\t";
+    system("pause");
+    return;
 }
 
 int main()

@@ -35,27 +35,6 @@ struct Nó
 
 Nó *inicio = NULL;
 
-int Menu_Principal()
-{
-
-    int MenuEscolhido;
-
-    system("cls");
-
-    puts("\t");
-    puts("\t(1) - Inserir um novo registo de aluno");
-    puts("\t(2) - Eliminar um registo contendo um determinado nome");
-    puts("\t(3) - Procurar por um registo com um dado nome");
-    puts("\t(4) - Listar todos os registos");
-    puts("\t(0) - Sair");
-
-    cout << "\n\n\tInsira a sua escolha: ";
-
-    cin >> MenuEscolhido;
-
-    return MenuEscolhido;
-}
-
 void Inserir_um_novo_registo_de_aluno()
 {
     // Cria-se um ponteiro que aponta para um endereço de memória,
@@ -201,7 +180,7 @@ void Procurar_por_um_registo_com_um_dado_nome()
 
     cin.ignore();
 
-    cout << "\n\tInsira o nome do aluno que que pesquisar:";
+    cout << "\n\tInsira o nome do aluno que procura:";
     getline(cin, input_aluno_nome);
 
     Nó *atual = inicio;
@@ -218,13 +197,14 @@ void Procurar_por_um_registo_com_um_dado_nome()
         {
             printf("\n\t( %d ) Nota de %s: %g", Posicao_na_lista, atual->Aluno.nome.c_str(), atual->Aluno.nota);
         }
+
         anterior = atual;
         atual = atual->prox;
     }
 
-    cout <<
+    cout << "\n\n\t";
 
-        system("pause");
+    system("pause");
 }
 
 void Listar_todos_os_registos()
@@ -261,18 +241,35 @@ void Listar_todos_os_registos()
     system("pause");
 }
 
-int main()
+void Menu()
 {
-    setlocale(LC_ALL, "pt_PT.utf8");
-
-    system("color 0e");
 
     int MenuEscolhido;
 
+    system("cls");
+
+    puts("\t");
+
+    puts("============ LISTA DE REGISTOS DE ALUNOS DA BATALHA ===========");
+
+    puts("\n\t(1) - Inserir um novo registo de aluno");
+
+    puts("\n\t(2) - Eliminar um registo contendo um determinado nome");
+
+    puts("\n\t(3) - Procurar por um registo com um dado nome");
+
+    puts("\n\t(4) - Listar todos os registos");
+
+    puts("\n\n\t(0) - Sair");
+
+    puts("\n===============================================================\n");
+
+    cout << "\nInsira a sua escolha: ";
+
+    cin >> MenuEscolhido;
+
     do
     {
-
-        MenuEscolhido = Menu_Principal();
 
         if (MenuEscolhido != 0)
         {
@@ -302,12 +299,23 @@ int main()
             default:
 
                 puts("\t");
-                puts("\n\tOpção inválida!\nTente novamente.\n\n");
-                system("\tpause");
+                puts("\nOpção inválida!Tente novamente!\n\n");
+                system("pause");
             }
         }
 
     } while (MenuEscolhido != 0);
+}
+
+int main()
+{
+    setlocale(LC_ALL, "pt_PT.utf8");
+
+    system("color 0e");
+
+    Menu();
+
+    puts("\n\t");
 
     return 0;
 }

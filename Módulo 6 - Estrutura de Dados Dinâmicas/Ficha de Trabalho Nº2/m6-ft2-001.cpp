@@ -11,7 +11,6 @@ using namespace std;
 // • Inserir um novo registo de aluno
 // • Eliminar um registo contendo um determinado nome
 // • Procurar por um registo com um dado nome
-// • Adicionar um registo de aluno
 // • Listar todos os registos
 
 // Construir o programa com rotinas apropriadas, nomeadamente com
@@ -22,6 +21,7 @@ struct DadosAlunos
 {
 
     string nome;
+
     float nota;
 };
 
@@ -83,81 +83,63 @@ void Inserir_um_novo_registo_de_aluno()
     cout << "\n\tNota:";
     cin >> Ponteiro_auxiliar->Aluno.nota;
 
-    // Adiciona o novo nó no final da lista.
-
-    Ponteiro_auxiliar->prox = NULL;
-
-    // Verifica se a lista está vazia.
-
     if (inicio == NULL)
     {
-        // Adiciona o novo nó no inicio da lista.
-        inicio = Ponteiro_auxiliar;
+
+        inicio = Ponteiro_auxiliar;     // Se a lista estiver vazia, o inicio aponta para o novo nó.
+        Ponteiro_auxiliar->prox = NULL; // Adiciona o novo nó no inicio, e o proximo é nulo
     }
     else
     {
-        // Adiciona o novo nó no inicio da lista.
-        Nó *atual = inicio;
 
-        // Adiciona o novo nó no fim da lista.
-        while (atual->prox != NULL)
-        {
-            atual = atual->prox;
-        }
-        atual->prox = Ponteiro_auxiliar;
-    }
-}
-
-void Listar_todos_os_registos()
-{
-
-    // Ponteiro auxiliar para percorrer a lista.
-
-    Nó *atual = inicio;
-
-    int Numero_Registros = 0;
-
-    system("cls");
-
-    cout << "\n\tTodos os Registos de Alunos\n";
-
-    // Enquanto a lista não estiver vazia, percorre a lista.
-
-    while (atual != NULL)
-    {
-        // Incrementa o numero de registros.
-
-        Numero_Registros++;
-
-        // cout << "\n\t"<< "( " << Numero_Registros << " )" << atual->Aluno.nome << " - " << atual->Aluno.nota;
-        printf("\n\t( %d ) %s - %g", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota);
-
-        // Ponteiro auxiliar avança para o próximo nó.
-
-        atual = atual->prox;
+        inicio->prox = Ponteiro_auxiliar; // Se a lista não estiver vazia, o inicio aponta para o novo nó.
+        Ponteiro_auxiliar->prox = NULL;   // Adicona nó onde é o atual próxima que estava a nulo
     }
 
-    cout << "\n\n\t";
+    // Outra solução que adiciona o nó no final da lista
 
-    system("pause");
+    // Adiciona o novo nó no final da lista.
+
+    // Ponteiro_auxiliar->prox = NULL;
+
+    // Verifica se a lista está vazia.
+
+    // if (inicio == NULL)
+    // {
+    //     // Adiciona o novo nó no inicio da lista.
+    //     inicio = Ponteiro_auxiliar;
+    // }
+    // else
+    // {
+    //     // Adiciona o novo nó no inicio da lista.
+    //     Nó *atual = inicio;
+
+    //     // Adiciona o novo nó no fim da lista.
+    //     while (atual->prox != NULL)
+    //     {
+    //         atual = atual->prox;
+    //     }
+    //     atual->prox = Ponteiro_auxiliar;
+    // }
 }
 
 void Eliminar_um_registo_contendo_um_determinado_nome()
 {
-    system("cls");
-
-    cout << "\n\tEliminar o Registo de um Aluno\n";
-
     if (inicio == NULL)
     {
-        cout << "\n\n\tA lista esta vazia.\n";
-        cout << "\n\n\t";
+        cout << "\n\tA lista esta vazia!\n\n\t";
         system("pause");
         return;
     }
 
+    system("cls");
+
+    cout << "\n\tEliminar o Registo de um Aluno\n";
+
     string nome_a_eliminar;
+
     cin.ignore(); // Limpar o caractere de nova linha pendente no buffer de entrada
+
     cout << "\n\tInsira o nome do Aluno: ";
     getline(cin, nome_a_eliminar);
 
@@ -201,6 +183,84 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
     return;
 }
 
+void Procurar_por_um_registo_com_um_dado_nome()
+{
+
+    if (inicio == NULL)
+    {
+        cout << "\n\tA lista está vazia!\n\n\t";
+        system("pause");
+        return;
+    }
+
+    string input_aluno_nome;
+
+    system("cls");
+
+    cout << "\n\tProcure um registo de aluno";
+
+    cin.ignore();
+
+    cout << "\n\tInsira o nome do aluno que que pesquisar:";
+    getline(cin, input_aluno_nome);
+
+    Nó *atual = inicio;
+    Nó *anterior = NULL;
+
+    int Posicao_na_lista = 0;
+
+    while (atual != NULL)
+    {
+
+        Posicao_na_lista++;
+
+        if (atual->Aluno.nome == input_aluno_nome)
+        {
+            printf("\n\t( %d ) Nota de %s: %g", Posicao_na_lista, atual->Aluno.nome.c_str(), atual->Aluno.nota);
+        }
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    cout <<
+
+        system("pause");
+}
+
+void Listar_todos_os_registos()
+{
+
+    // Ponteiro auxiliar para percorrer a lista.
+
+    Nó *atual = inicio;
+
+    int Numero_Registros = 0;
+
+    system("cls");
+
+    cout << "\n\tTodos os Registos de Alunos\n";
+
+    // Enquanto a lista não estiver vazia, percorre a lista.
+
+    while (atual != NULL)
+    {
+        // Incrementa o numero de registros.
+
+        Numero_Registros++;
+
+        // cout << "\n\t"<< "( " << Numero_Registros << " )" << atual->Aluno.nome << " - " << atual->Aluno.nota;
+        printf("\n\t( %d ) %s - %g", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota);
+
+        // Ponteiro auxiliar avança para o próximo nó.
+
+        atual = atual->prox;
+    }
+
+    cout << "\n\n\t";
+
+    system("pause");
+}
+
 int main()
 {
     setlocale(LC_ALL, "pt_PT.utf8");
@@ -231,7 +291,7 @@ int main()
 
             case 3:
 
-                // Procurar_por_um_registo_com_um_dado_nome();
+                Procurar_por_um_registo_com_um_dado_nome();
                 break;
 
             case 4:

@@ -5,19 +5,19 @@
 #include <string>
 using namespace std;
 
-// Cria um programa que implemente certas operações simples para uma base de dados de alunos,
+// 1) A partir do código desenvolvido para construir o programa do exercício da Ficha de
+// Trabalho Nº2 deste Módulo, constrói um programa que simule uma Lista Encadeada
+// Ordenada. A lista dos alunos deve estar ordenada pelo atributo nome.
 
-// cujos registos tem apenas dois campos : nome e nota.
-// As operações a efetuar, são :
+// a) O registo de um aluno deve ser inserido na posição correta para que a lista esteja ordenada.
+// b) Ao eliminar um registo, a lista deve continuar ordenada.
+// c) Adicionar uma opção para mostrar o comprimento da lista.
+// d) Adicionar uma opção para esvaziar a lista.
 
-// • Inserir um novo registo de aluno
-// • Eliminar um registo contendo um determinado nome
-// • Procurar por um registo com um dado nome
-// • Listar todos os registos
+// 2) A partir do código desenvolvido na questão anterior, construir um programa que simule
+// uma Lista Encadeada Bidirecional Ordenada.
 
-// Construir o programa com rotinas apropriadas, nomeadamente com
-// uma rotina para o menu de operações a efetuar.Deves criar funções
-// distintas para cada uma das operações a efetuar.
+// Nota: Numa lista bidirecional, cada nó contém um ponteiro para o nó seguinte e para o nó anterior
 
 struct DadosAlunos
 {
@@ -74,6 +74,31 @@ int Menu()
     return MenuEscolhido;
 }
 
+void InserirOrdenado(Nó *Novo_Nó)
+{
+    Nó *atual = inicio;
+    Nó *anterior = NULL;
+
+    while (atual != NULL && atual->Aluno.nome < Novo_Nó->Aluno.nome)
+    {
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if (anterior == NULL)
+    {
+        // Inserir no início da lista
+        Novo_Nó->prox = inicio;
+        inicio = Novo_Nó;
+    }
+    else
+    {
+        // Inserir após o nó anterior
+        Novo_Nó->prox = atual;
+        anterior->prox = Novo_Nó;
+    }
+}
+
 void Inserir_um_novo_registo_de_aluno()
 {
     // Cria-se um ponteiro que aponta para um endereço de memória,
@@ -101,44 +126,15 @@ void Inserir_um_novo_registo_de_aluno()
     cout << "\n\tNota:";
     cin >> Ponteiro_auxiliar->Aluno.nota;
 
-    if (inicio == NULL)
+    if (inicio == NULL) //Se a lista estiver vazia: 
     {
-
-        inicio = Ponteiro_auxiliar;     // Se a lista estiver vazia, o inicio aponta para o novo nó.
-        Ponteiro_auxiliar->prox = NULL; // Adiciona o novo nó no inicio, e o proximo é nulo
+        inicio = Ponteiro_auxiliar; // Coloca o ponteiro auxiliar no inicio da lista
+        Ponteiro_auxiliar->prox = NULL; // Como o próximo ainda não existe é nulo
     }
-    else
+    else // Se não estiver vazia: 
     {
-
-        inicio->prox = Ponteiro_auxiliar; // Se a lista não estiver vazia, o inicio aponta para o novo nó.
-        Ponteiro_auxiliar->prox = NULL;   // Adicona nó onde é o atual próxima que estava a nulo
+        InserirOrdenado(Ponteiro_auxiliar); // Chama a função para ordenar na lista existente
     }
-
-    // Outra solução que adiciona o nó no final da lista
-
-    // Adiciona o novo nó no final da lista.
-
-    // Ponteiro_auxiliar->prox = NULL;
-
-    // Verifica se a lista está vazia.
-
-    // if (inicio == NULL)
-    // {
-    //     // Adiciona o novo nó no inicio da lista.
-    //     inicio = Ponteiro_auxiliar;
-    // }
-    // else
-    // {
-    //     // Adiciona o novo nó no inicio da lista.
-    //     Nó *atual = inicio;
-
-    //     // Adiciona o novo nó no fim da lista.
-    //     while (atual->prox != NULL)
-    //     {
-    //         atual = atual->prox;
-    //     }
-    //     atual->prox = Ponteiro_auxiliar;
-    // }
 }
 
 void Eliminar_um_registo_contendo_um_determinado_nome()

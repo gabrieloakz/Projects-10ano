@@ -35,6 +35,43 @@ struct Nó
 
 Nó *inicio = NULL;
 
+int Menu()
+{
+
+    int MenuEscolhido;
+
+    system("cls");
+
+    puts("\t");
+
+    puts("============ LISTA DE REGISTOS DE ALUNOS DA BATALHA ===========");
+
+    puts("\n\t(1) - Inserir um novo registo de aluno");
+
+    puts("\n\t(2) - Eliminar um registo contendo um determinado nome");
+
+    puts("\n\t(3) - Procurar por um registo com um dado nome");
+
+    puts("\n\t(4) - Listar todos os registos");
+
+    puts("\n\n\t(0) - Sair");
+
+    puts("\n===============================================================\n");
+
+    cout << "\nInsira a sua escolha: ";
+
+    while (!(cin >> MenuEscolhido))
+    {
+        cout << "Entrada inválida. Por favor, digite um número válido: ";
+
+        // Limpa o buffer do std::cin para remover a entrada inválida
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    return MenuEscolhido;
+}
+
 void Inserir_um_novo_registo_de_aluno()
 {
     // Cria-se um ponteiro que aponta para um endereço de memória,
@@ -106,7 +143,7 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
 {
     if (inicio == NULL)
     {
-        cout << "\n\tA lista esta vazia!\n\n\t";
+        cout << "\nA lista esta vazia!\n\n";
         system("pause");
         return;
     }
@@ -167,7 +204,7 @@ void Procurar_por_um_registo_com_um_dado_nome()
 
     if (inicio == NULL)
     {
-        cout << "\n\tA lista está vazia!\n\n\t";
+        cout << "\nA lista está vazia!\n\n";
         system("pause");
         return;
     }
@@ -180,7 +217,7 @@ void Procurar_por_um_registo_com_um_dado_nome()
 
     cin.ignore();
 
-    cout << "\n\tInsira o nome do aluno que procura:";
+    cout << "\n\n\tInsira o nome do aluno que procura:";
     getline(cin, input_aluno_nome);
 
     Nó *atual = inicio;
@@ -209,6 +246,13 @@ void Procurar_por_um_registo_com_um_dado_nome()
 
 void Listar_todos_os_registos()
 {
+
+    if (inicio == NULL)
+    {
+        cout << "\nA lista esta vazia!\n\n";
+        system("pause");
+        return;
+    }
 
     // Ponteiro auxiliar para percorrer a lista.
 
@@ -241,35 +285,17 @@ void Listar_todos_os_registos()
     system("pause");
 }
 
-void Menu()
+int main()
 {
+    setlocale(LC_ALL, "pt_PT.utf8");
+
+    system("color 0e");
 
     int MenuEscolhido;
 
-    system("cls");
-
-    puts("\t");
-
-    puts("============ LISTA DE REGISTOS DE ALUNOS DA BATALHA ===========");
-
-    puts("\n\t(1) - Inserir um novo registo de aluno");
-
-    puts("\n\t(2) - Eliminar um registo contendo um determinado nome");
-
-    puts("\n\t(3) - Procurar por um registo com um dado nome");
-
-    puts("\n\t(4) - Listar todos os registos");
-
-    puts("\n\n\t(0) - Sair");
-
-    puts("\n===============================================================\n");
-
-    cout << "\nInsira a sua escolha: ";
-
-    cin >> MenuEscolhido;
-
     do
     {
+        MenuEscolhido = Menu();
 
         if (MenuEscolhido != 0)
         {
@@ -305,15 +331,6 @@ void Menu()
         }
 
     } while (MenuEscolhido != 0);
-}
-
-int main()
-{
-    setlocale(LC_ALL, "pt_PT.utf8");
-
-    system("color 0e");
-
-    Menu();
 
     puts("\n\t");
 

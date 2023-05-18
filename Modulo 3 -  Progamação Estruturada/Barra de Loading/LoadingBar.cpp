@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <locale>
-#include <chrono>
+// #include <chrono>
 #include <thread>
 using namespace std;
 
@@ -11,12 +11,12 @@ int main()
     // setlocale(LC_ALL, "pt_PT.utf8");
 
     int Barra, i;
-    
+
     system("color 0c");
 
     system("cls");
 
-    Barra = 219;
+    Barra = 219; // codigo ascii da barrinha
 
     cout << "\n\n\n\t\t\t\t";
 
@@ -26,12 +26,13 @@ int main()
     {
         cout << char(Barra);
 
-        this_thread::sleep_for(10ms) ;
+        this_thread::sleep_for(10ms);
     }
 
-    cout << " " << "Tarefa Concluida" << i << "/32\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t" ;
+    cout << " "
+         << "Tarefa Concluida " << i << "/32\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t";
 
-    this_thread::sleep_for(10ms) ;
+    this_thread::sleep_for(10ms);
 
     return 0;
 }

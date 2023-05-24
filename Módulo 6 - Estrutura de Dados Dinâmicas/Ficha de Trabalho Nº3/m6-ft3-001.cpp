@@ -39,6 +39,8 @@ struct Nó
 
 Nó *inicio = NULL;
 
+int Numero_elementos_ista = 0;
+
 int Menu()
 {
 
@@ -57,6 +59,10 @@ int Menu()
     puts("\n\t(3) - Procurar por um registo com um dado nome");
 
     puts("\n\t(4) - Listar todos os registos");
+
+    puts("\n\t(5) - Mostrar o comprimento da lista");
+
+    puts("\n\t(6) - Esvaziar a lista");
 
     puts("\n\n\t(0) - Sair");
 
@@ -136,7 +142,7 @@ void Inserir_um_novo_registo_de_aluno()
     cout << "\n\tNota:";
     cin >> Ponteiro_auxiliar->Aluno.nota;
 
-    Ponteiro_auxiliar->ant = NULL;
+    Ponteiro_auxiliar->Ponteiro_Antecessor = NULL;
 
     if (inicio == NULL)
     {
@@ -289,7 +295,10 @@ void Listar_todos_os_registos()
         Numero_Registros++;
 
         // cout << "\n\t"<< "( " << Numero_Registros << " )" << atual->Aluno.nome << " - " << atual->Aluno.nota;
+
         printf("\n\t( %d ) %s - %g | Endereço do Ponteiro_Antecessor: %p Endereço do próximo: %p\n", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota, atual->Ponteiro_Antecessor, atual->Ponteiro_Sucessor);
+
+        printf("\n\t(%d) %s - %g", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota);
 
         // Ponteiro auxiliar avança para o próximo nó.
 
@@ -299,6 +308,61 @@ void Listar_todos_os_registos()
     cout << "\n\n\t";
 
     system("pause");
+}
+
+void Mostrar_o_comprimento_a_lista()
+{
+    if (inicio == NULL)
+    {
+        cout << "\nA lista está vazia\n\n";
+        system("pause");
+        return;
+    }
+
+    system("cls");
+
+    cout << "\n\tVer Comprimento da Lista\n\n\t";
+
+    Nó *atual = inicio;
+    int Comprimento_lista = 0;
+    while (atual != NULL)
+    {
+
+        Comprimento_lista++;
+
+        atual = atual->prox;
+    }
+
+    printf("Comprimento da Lista: %d\n\n\t", Comprimento_lista);
+
+    system("pause");
+    return;
+
+    // int Barra = 219; // Código ASCII da barrinha
+    // for (int i = 0; i < 100; i++)
+    // {
+    //     cout << char(Barra);
+
+    //     this_thread::sleep_for(10ms);
+    // }
+
+    // this_thread::sleep_for(10ms);
+}
+
+void Esvaziar_a_lista()
+{
+    system("cls");
+
+    cout << "\n\tEsvaziando a lista";
+
+    Nó *atual = inicio;
+
+    while (inicio != NULL)
+    {
+        atual = inicio;
+        inicio = atual->prox;
+        delete atual;
+    }
 }
 
 int main()
@@ -336,6 +400,14 @@ int main()
             case 4:
 
                 Listar_todos_os_registos();
+                break;
+
+            case 5:
+                Mostrar_o_comprimento_a_lista();
+                break;
+
+            case 6:
+                Esvaziar_a_lista();
                 break;
 
             default:

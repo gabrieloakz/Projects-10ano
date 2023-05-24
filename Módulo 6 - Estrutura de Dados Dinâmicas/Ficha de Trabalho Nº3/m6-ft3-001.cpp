@@ -85,17 +85,17 @@ int Menu()
 void InserirOrdenado(Nó *Novo_Nó)
 {
     Nó *atual = inicio;
-    Nó *Anterior_Endereço = NULL;
+    Nó *Anterior_Endereco = NULL;
 
     while (atual != NULL && atual->Aluno.nome < Novo_Nó->Aluno.nome)
     {
-        Anterior_Endereço = atual;
+        Anterior_Endereco = atual;
         atual = atual->Ponteiro_Sucessor;
     }
 
     Novo_Nó->Ponteiro_Sucessor = atual;
 
-    if (Anterior_Endereço == NULL)
+    if (Anterior_Endereco == NULL)
     {
         // Inserir no início da lista
         Novo_Nó->Ponteiro_Antecessor = NULL;
@@ -104,14 +104,14 @@ void InserirOrdenado(Nó *Novo_Nó)
     else
     {
         // Inserir após o nó Ponteiro_Antecessor
-        Novo_Nó->Ponteiro_Sucessor = Anterior_Endereço;
-        Anterior_Endereço->Ponteiro_Sucessor = Novo_Nó;
+        Novo_Nó->Ponteiro_Antecessor = Anterior_Endereco;
+        Anterior_Endereco->Ponteiro_Sucessor = Novo_Nó;
     }
 
     if (atual != NULL)
     {
         // Ajustar o nó seguinte ao novo nó
-        atual->Ponteiro_Antecessor = novoNó;
+        atual->Ponteiro_Antecessor = Novo_Nó;
     }
 }
 
@@ -146,7 +146,7 @@ void Inserir_um_novo_registo_de_aluno()
 
     if (inicio == NULL)
     {
-        Ponteiro_auxiliar->prox = NULL;
+        Ponteiro_auxiliar->Ponteiro_Sucessor = NULL;
         inicio = Ponteiro_auxiliar;
     }
     else
@@ -296,9 +296,7 @@ void Listar_todos_os_registos()
 
         // cout << "\n\t"<< "( " << Numero_Registros << " )" << atual->Aluno.nome << " - " << atual->Aluno.nota;
 
-        printf("\n\t( %d ) %s - %g | Endereço do Ponteiro_Antecessor: %p Endereço do próximo: %p\n", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota, atual->Ponteiro_Antecessor, atual->Ponteiro_Sucessor);
-
-        printf("\n\t(%d) %s - %g", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota);
+        printf("\n\t( %d ) %s - %g | Endereço: %p Anterior: %p Próximo: %p\n", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota, atual, atual->Ponteiro_Antecessor, atual->Ponteiro_Sucessor);
 
         // Ponteiro auxiliar avança para o próximo nó.
 
@@ -308,6 +306,7 @@ void Listar_todos_os_registos()
     cout << "\n\n\t";
 
     system("pause");
+    return;
 }
 
 void Mostrar_o_comprimento_a_lista()
@@ -330,7 +329,7 @@ void Mostrar_o_comprimento_a_lista()
 
         Comprimento_lista++;
 
-        atual = atual->prox;
+        atual = atual->Ponteiro_Sucessor;
     }
 
     printf("Comprimento da Lista: %d\n\n\t", Comprimento_lista);
@@ -351,18 +350,30 @@ void Mostrar_o_comprimento_a_lista()
 
 void Esvaziar_a_lista()
 {
+    if (inicio == NULL)
+    {
+        cout << "\nA lista está vazia\n\n";
+        system("pause");
+        return;
+    }
+
     system("cls");
 
-    cout << "\n\tEsvaziando a lista";
+    cout << "\n\tEsvaziando a lista\n";
 
     Nó *atual = inicio;
 
     while (inicio != NULL)
     {
         atual = inicio;
-        inicio = atual->prox;
+        inicio = atual->Ponteiro_Sucessor;
         delete atual;
     }
+
+    cout << "\n\tLista esvaziada!\n\n\t";
+
+    system("pause");
+    return;
 }
 
 int main()

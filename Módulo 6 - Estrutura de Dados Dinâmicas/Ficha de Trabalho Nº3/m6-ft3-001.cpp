@@ -14,10 +14,10 @@ using namespace std;
 // c) Adicionar uma opção para mostrar o comprimento da lista.
 // d) Adicionar uma opção para esvaziar a lista.
 
-// 2) A partir do código desenvolvido na questão Ponteiro_Antecessor, construir um programa que simule
+// 2) A partir do código desenvolvido na questão anterior, construir um programa que simule
 // uma Lista Encadeada Bidirecional Ordenada.
 
-// Nota: Numa lista bidirecional, cada nó contém um ponteiro para o nó seguinte e para o nó Ponteiro_Antecessor
+// Nota: Numa lista bidirecional, cada nó contém um ponteiro para o nó seguinte e para o nó anterior
 
 struct DadosAlunos
 {
@@ -105,7 +105,7 @@ void InserirOrdenado(Nó *Novo_Nó)
     if (atual != NULL)
     {
         // Ajustar o nó seguinte ao novo nó
-        atual->ant = novoNó;
+        atual->Ponteiro_Antecessor = novoNó;
     }
 }
 

@@ -3,8 +3,6 @@
 #include <iostream>
 #include <locale>
 #include <string>
-#include <thread>
-#include <chrono>
 using namespace std;
 
 // 1) A partir do código desenvolvido para construir o programa do exercício da Ficha de
@@ -34,7 +32,9 @@ struct Nó
 
     DadosAlunos Aluno;
 
-    Nó *prox;
+    Nó *Ponteiro_Sucessor;
+
+    Nó *Ponteiro_Antecessor;
 };
 
 Nó *inicio = NULL;
@@ -85,25 +85,33 @@ int Menu()
 void InserirOrdenado(Nó *Novo_Nó)
 {
     Nó *atual = inicio;
-    Nó *anterior = NULL;
+    Nó *Anterior_Endereco = NULL;
 
     while (atual != NULL && atual->Aluno.nome < Novo_Nó->Aluno.nome)
     {
-        anterior = atual;
-        atual = atual->prox;
+        Anterior_Endereco = atual;
+        atual = atual->Ponteiro_Sucessor;
     }
 
-    if (anterior == NULL)
+    Novo_Nó->Ponteiro_Sucessor = atual;
+
+    if (Anterior_Endereco == NULL)
     {
         // Inserir no início da lista
-        Novo_Nó->prox = inicio;
+        Novo_Nó->Ponteiro_Antecessor = NULL;
         inicio = Novo_Nó;
     }
     else
     {
-        // Inserir após o nó anterior
-        Novo_Nó->prox = atual;
-        anterior->prox = Novo_Nó;
+        // Inserir após o nó Ponteiro_Antecessor
+        Novo_Nó->Ponteiro_Antecessor = Anterior_Endereco;
+        Anterior_Endereco->Ponteiro_Sucessor = Novo_Nó;
+    }
+
+    if (atual != NULL)
+    {
+        // Ajustar o nó seguinte ao novo nó
+        atual->Ponteiro_Antecessor = Novo_Nó;
     }
 }
 
@@ -134,14 +142,16 @@ void Inserir_um_novo_registo_de_aluno()
     cout << "\n\tNota:";
     cin >> Ponteiro_auxiliar->Aluno.nota;
 
-    if (inicio == NULL) // Se a lista estiver vazia:
+    Ponteiro_auxiliar->Ponteiro_Antecessor = NULL;
+
+    if (inicio == NULL)
     {
-        inicio = Ponteiro_auxiliar;     // Coloca o ponteiro auxiliar no inicio da lista
-        Ponteiro_auxiliar->prox = NULL; // Como o próximo ainda não existe é nulo
+        Ponteiro_auxiliar->Ponteiro_Sucessor = NULL;
+        inicio = Ponteiro_auxiliar;
     }
-    else // Se não estiver vazia:
+    else
     {
-        InserirOrdenado(Ponteiro_auxiliar); // Chama a função para ordenar na lista existente
+        InserirOrdenado(Ponteiro_auxiliar);
     }
 }
 
@@ -166,17 +176,17 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
     getline(cin, nome_a_eliminar);
 
     Nó *atual = inicio;
-    Nó *anterior = NULL;
+    Nó *Ponteiro_Antecessor = NULL;
 
     // Percorre a lista até encontrar o nome a ser eliminado ou chegar ao final da lista.
     while (atual != NULL)
     {
         if (atual->Aluno.nome == nome_a_eliminar)
         {
-            if (anterior == NULL)
+            if (Ponteiro_Antecessor == NULL)
             {
                 // Caso o nó a ser eliminado seja o primeiro da lista.
-                inicio = atual->prox;
+                inicio = atual->Ponteiro_Sucessor;
                 delete atual;
                 cout << "\n\tRegistro eliminado.\n";
                 cout << "\n\n\t";
@@ -186,7 +196,7 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
             else
             {
                 // Caso o nó a ser eliminado esteja no meio ou no final da lista.
-                anterior->prox = atual->prox;
+                Ponteiro_Antecessor->Ponteiro_Sucessor = atual->Ponteiro_Sucessor;
                 delete atual;
                 cout << "\n\tRegistro eliminado.\n";
                 cout << "\n\n\t";
@@ -194,8 +204,8 @@ void Eliminar_um_registo_contendo_um_determinado_nome()
                 return;
             }
         }
-        anterior = atual;
-        atual = atual->prox;
+        Ponteiro_Antecessor = atual;
+        atual = atual->Ponteiro_Sucessor;
     }
 
     // Se chegou aqui, significa que o nome não foi encontrado na lista.
@@ -227,7 +237,7 @@ void Procurar_por_um_registo_com_um_dado_nome()
     getline(cin, input_aluno_nome);
 
     Nó *atual = inicio;
-    Nó *anterior = NULL;
+    Nó *Ponteiro_Antecessor = NULL;
 
     int Posicao_na_lista = 0;
 
@@ -244,8 +254,8 @@ void Procurar_por_um_registo_com_um_dado_nome()
             return;
         }
 
-        anterior = atual;
-        atual = atual->prox;
+        Ponteiro_Antecessor = atual;
+        atual = atual->Ponteiro_Sucessor;
     }
 
     // Se chegou aqui, significa que o nome não foi encontrado na lista.
@@ -285,16 +295,18 @@ void Listar_todos_os_registos()
         Numero_Registros++;
 
         // cout << "\n\t"<< "( " << Numero_Registros << " )" << atual->Aluno.nome << " - " << atual->Aluno.nota;
-        printf("\n\t(%d) %s - %g", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota);
+
+        printf("\n\t( %d ) %s - %g | Endereço: %p Anterior: %p Próximo: %p\n", Numero_Registros, atual->Aluno.nome.c_str(), atual->Aluno.nota, atual, atual->Ponteiro_Antecessor, atual->Ponteiro_Sucessor);
 
         // Ponteiro auxiliar avança para o próximo nó.
 
-        atual = atual->prox;
+        atual = atual->Ponteiro_Sucessor;
     }
 
     cout << "\n\n\t";
 
     system("pause");
+    return;
 }
 
 void Mostrar_o_comprimento_a_lista()
@@ -317,7 +329,7 @@ void Mostrar_o_comprimento_a_lista()
 
         Comprimento_lista++;
 
-        atual = atual->prox;
+        atual = atual->Ponteiro_Sucessor;
     }
 
     printf("Comprimento da Lista: %d\n\n\t", Comprimento_lista);
@@ -338,18 +350,30 @@ void Mostrar_o_comprimento_a_lista()
 
 void Esvaziar_a_lista()
 {
+    if (inicio == NULL)
+    {
+        cout << "\nA lista está vazia\n\n";
+        system("pause");
+        return;
+    }
+
     system("cls");
 
-    cout << "\n\tEsvaziando a lista";
+    cout << "\n\tEsvaziando a lista\n";
 
     Nó *atual = inicio;
 
     while (inicio != NULL)
     {
         atual = inicio;
-        inicio = atual->prox;
+        inicio = atual->Ponteiro_Sucessor;
         delete atual;
     }
+
+    cout << "\n\tLista esvaziada!\n\n\t";
+
+    system("pause");
+    return;
 }
 
 int main()

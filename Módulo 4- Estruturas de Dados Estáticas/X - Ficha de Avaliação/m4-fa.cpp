@@ -4,7 +4,7 @@
 #include <locale>
 using namespace std;
 
-// Declaração de constantes 
+// Declaração de constantes
 
 const int DIM = 10;
 

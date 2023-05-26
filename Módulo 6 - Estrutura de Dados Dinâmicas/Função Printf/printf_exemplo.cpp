@@ -1,8 +1,8 @@
 // Sintaxe : printf(“string a ser escrita no ecrã”, [lista de argumentos]);
 
 // Na string a ser escrita no ecrã podem - se incluir especificadores de formato(começados por %) dos valores das variáveis indicadas nos argumentos.Alguns especificadores para imprimir conteúdo de variáveis : % c - representação ASCII;
-
-// % d ou % i - representação decimal com sinal;
+ 
+// % dou % i - representação decimal com sinal;
 // % u - representação decimal sem sinal;
 // % o - representação octal sem sinal;
 // % x - representação hexadecimal sem sinal.

@@ -1,0 +1,2 @@
+▪ Olá, Estamos na aula de PSI a estudar C++
+▪ Este é o ficheiro primeiro.txt

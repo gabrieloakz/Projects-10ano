@@ -40,7 +40,7 @@ struct Nó
 Nó *inicio = NULL;
 
 int Numero_elementos_ista = 0;
-
+d
 int Menu()
 {
 

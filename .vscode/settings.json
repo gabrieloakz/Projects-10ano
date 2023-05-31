@@ -62,6 +62,7 @@
         "xmemory": "cpp",
         "xstddef": "cpp",
         "xtr1common": "cpp",
-        "terminal.integrated.shellArgs.windows": "/K chcp 65001"
+        "terminal.integrated.shellArgs.windows": "/K chcp 65001",
+        "fstream": "cpp"
     }
 }

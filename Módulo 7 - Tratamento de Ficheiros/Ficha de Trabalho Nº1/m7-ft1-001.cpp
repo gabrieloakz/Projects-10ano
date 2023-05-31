@@ -2,19 +2,35 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 using namespace std;
-
-// 1) No bloco de notas, crie um ficheiro de 
-// nome “pessoas.txt”. Este ficheiro deve 
-// estar na mesma pasta onde irá criar o 
-// programa da alínea 3. Insira o conteúdo 
-// da imagem ao lado, no ficheiro criado.
 
 int main()
 {
 
-    ifstream Ficheiro("pessoas.txt")
+    ifstream Ficheiro("pessoas.csv");
+    string Linha_Lida;
+    string Celula;
+
+    while (getline(Ficheiro, Linha_Lida))
+    {
+        stringstream Fluxo_Linha(Linha_Lida);
+
+        while (getline(Fluxo_Linha, Celula, ';'))
+        {
+            cout << Celula << "\t";
+        }
+        cout << "\n";
+        // Sa´da do texto do ficheiro
+        // cout << linhalida;
+        
+    }
+
+    //Fechar o ficheiro
     
+
+    Ficheiro.close();
+
     return 0;
 }

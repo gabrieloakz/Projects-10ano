@@ -25,6 +25,7 @@ int main()
     // Abrir ficheiro e ler carro do ficheiro para dentro da struct
     cout << "Reading Carro from file" << endl;
     Carro from_file;
+    
     ifstream fin("mydata.txt");
     fin >> from_file.marca >> from_file.modelo >> from_file.ano;
     fin.close();
